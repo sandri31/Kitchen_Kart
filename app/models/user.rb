@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+# The User model represents users in the system. Each user can create recipes,
+# post comments, rate recipes, and has a personal shopping bag for ingredients.
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -11,7 +15,7 @@ class User < ApplicationRecord
 
   enum role: { user: 0, moderator: 1, admin: 2 }
 
-  validates :username, presence: true, uniqueness: { case_sensitive: false }
+  validates :username, presence: true, uniqueness: true
 
   after_initialize :set_default_role, if: :new_record?
 
