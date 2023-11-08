@@ -10,9 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_08_145829) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_08_192950) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "recipe_categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "recipes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "recipe_category_id", null: false
+    t.string "title", limit: 255, null: false
+    t.integer "cooking_time"
+    t.integer "preparation_time"
+    t.integer "total_time"
+    t.string "difficulty", default: "Facile", null: false
+    t.string "cost", default: "Bon marché", null: false
+    t.integer "servings", default: 1, null: false, comment: "Number of people the recipe is for"
+    t.integer "status", default: 0, null: false, comment: "Status of the recipe (draft, published, archived)"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_category_id"], name: "index_recipes_on_recipe_category_id"
+    t.index ["user_id"], name: "index_recipes_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -29,4 +52,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_08_145829) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "recipes", "recipe_categories"
+  add_foreign_key "recipes", "users"
 end
