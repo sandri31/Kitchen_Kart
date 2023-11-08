@@ -9,6 +9,8 @@ class Recipe < ApplicationRecord
   has_many :recipe_ingredients, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :ratings, dependent: :destroy
+  has_many :recipe_utensils
+  has_many :utensils, through: :recipe_utensils
 
   validates :title, presence: true
   validates :cooking_time, :preparation_time, presence: true, numericality: { only_integer: true, greater_than: 0 }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_08_194751) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_08_211128) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -67,6 +67,15 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_08_194751) do
     t.index ["recipe_id"], name: "index_recipe_ingredients_on_recipe_id"
   end
 
+  create_table "recipe_utensils", force: :cascade do |t|
+    t.bigint "recipe_id", null: false
+    t.bigint "utensil_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_recipe_utensils_on_recipe_id"
+    t.index ["utensil_id"], name: "index_recipe_utensils_on_utensil_id"
+  end
+
   create_table "recipes", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "recipe_category_id", null: false
@@ -119,6 +128,12 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_08_194751) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  create_table "utensils", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "comments", "recipes"
   add_foreign_key "comments", "users"
   add_foreign_key "ingredients", "ingredient_categories"
@@ -126,6 +141,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_08_194751) do
   add_foreign_key "ratings", "users"
   add_foreign_key "recipe_ingredients", "ingredients"
   add_foreign_key "recipe_ingredients", "recipes"
+  add_foreign_key "recipe_utensils", "recipes"
+  add_foreign_key "recipe_utensils", "utensils"
   add_foreign_key "recipes", "recipe_categories"
   add_foreign_key "recipes", "users"
   add_foreign_key "shopping_bag_items", "ingredients"
