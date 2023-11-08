@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_08_211128) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_08_214806) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -67,6 +67,15 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_08_211128) do
     t.index ["recipe_id"], name: "index_recipe_ingredients_on_recipe_id"
   end
 
+  create_table "recipe_steps", force: :cascade do |t|
+    t.bigint "recipe_id", null: false
+    t.integer "step_number", null: false
+    t.text "instructions", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_recipe_steps_on_recipe_id"
+  end
+
   create_table "recipe_utensils", force: :cascade do |t|
     t.bigint "recipe_id", null: false
     t.bigint "utensil_id", null: false
@@ -89,6 +98,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_08_211128) do
     t.integer "status", default: 0, null: false, comment: "Status of the recipe (draft, published, archived)"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "instructions", default: "", null: false
     t.index ["recipe_category_id"], name: "index_recipes_on_recipe_category_id"
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end
@@ -141,6 +151,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_08_211128) do
   add_foreign_key "ratings", "users"
   add_foreign_key "recipe_ingredients", "ingredients"
   add_foreign_key "recipe_ingredients", "recipes"
+  add_foreign_key "recipe_steps", "recipes"
   add_foreign_key "recipe_utensils", "recipes"
   add_foreign_key "recipe_utensils", "utensils"
   add_foreign_key "recipes", "recipe_categories"
