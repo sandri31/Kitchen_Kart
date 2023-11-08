@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shopping_bag: one
+  ingredient: one
+  quantity: 9.99
+  unit: MyString
+  purchased: false
+  notes: MyText
+
+two:
+  shopping_bag: two
+  ingredient: two
+  quantity: 9.99
+  unit: MyString
+  purchased: false
+  notes: MyText
