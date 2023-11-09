@@ -16,7 +16,9 @@ class Recipe < ApplicationRecord
   validates :title, presence: true
   validates :cooking_time, :preparation_time, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :difficulty, inclusion: { in: %w[Facile Moyen Difficile] }
-  validates :description, presence: true, length: { minimum: 10, maximum: 1000 }
+  validates :instructions, presence: true, length: { minimum: 10, maximum: 1000 }
+
+  enum status: { draft: 0, published: 1, private: 2 }
 
   private
 
