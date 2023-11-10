@@ -18,6 +18,8 @@ class Recipe < ApplicationRecord
   validates :difficulty, inclusion: { in: %w[Facile Moyen Difficile] }
   validates :instructions, presence: true, length: { minimum: 10, maximum: 1000 }
 
+  before_save :set_total_time
+
   enum status: { draft: 0, published: 1, archived: 2, private_status: 3 }
 
   private
