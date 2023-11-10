@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_08_214806) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_10_092116) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -98,7 +98,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_08_214806) do
     t.integer "status", default: 0, null: false, comment: "Status of the recipe (draft, published, archived)"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "instructions", default: "", null: false
+    t.text "description", default: "", null: false
     t.index ["recipe_category_id"], name: "index_recipes_on_recipe_category_id"
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end
