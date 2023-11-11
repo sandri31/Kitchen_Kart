@@ -1,0 +1,69 @@
+<%= form_with(model: recipe) do |form| %>
+  <% if recipe.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+
+      <ul>
+        <% recipe.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :titre, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :Catégorie_de_recette, style: "display: block" %>
+    <%= form.collection_select :recipe_category_id, RecipeCategory.all, :id, :name, include_blank: 'Please select' %>
+  </div>
+
+  <div>
+    <%= form.label :cooking_time, style: "display: block" %>
+    <%= form.number_field :cooking_time %>
+  </div>
+
+  <div>
+    <%= form.label :preparation_time, style: "display: block" %>
+    <%= form.number_field :preparation_time %>
+  </div>
+
+  <div>
+    <%= form.label :total_time, style: "display: block" %>
+    <%= form.number_field :total_time %>
+  </div>
+
+  <div>
+    <%= form.label :difficulté, style: "display: block" %>
+    <%= form.select :difficulty, options_for_select(['Facile', 'Moyen', 'Difficile'], @recipe.difficulty), include_blank: 'Select Difficulty' %>
+  </div>
+
+  <div>
+    <%= form.label :Coût, style: "display: block" %>
+    <%= form.select :cost, options_for_select(['Très bon marché', 'Bon marché', 'Modéré', 'Assez cher', 'Cher', 'Très cher'], @recipe.cost), include_blank: 'Select Cost' %>
+  </div>
+
+  <div>
+    <%= form.label :servings, style: "display: block" %>
+    <%= form.number_field :servings %>
+  </div>
+
+  <div>
+    <%= form.label :status, style: "display: block" %>
+    <%= form.radio_button :status, 'private_status' %> <%= form.label :status_private_status, 'Privé' %><br>
+    <%= form.radio_button :status, 'initial_draft' %> <%= form.label :status_initial_draft, 'Public' %>
+  </div>
+
+  <div>
+    <%= form.label :description_de_la_recette, style: "display: block" %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.submit 'Save as Private', name: 'commit' %>
+    <%= form.submit 'Submit for Approval', name: 'commit' %>
+  </div>
+<% end %>

@@ -22,6 +22,9 @@ class Recipe < ApplicationRecord
 
   enum status: { initial_draft: 0, published: 1, archived: 2, private_status: 3 }, _prefix: :status
 
+  scope :published, -> { where(status: :published) }
+  scope :private_status, -> { where(status: :private_status) }
+
   private
 
     def calculate_total_time
