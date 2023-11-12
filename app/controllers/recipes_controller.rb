@@ -20,9 +20,12 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new(servings: 2)
+    @recipe.recipe_steps.build
   end
 
-  def edit; end
+  def edit
+    @recipe.recipe_steps.build unless @recipe.recipe_steps.present?
+  end
 
   def create
     @recipe = current_user.recipes.new(recipe_params)
@@ -63,7 +66,6 @@ class RecipesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def recipe_params
-      params.require(:recipe).permit(:title, :recipe_category_id, :cooking_time, :preparation_time,
-                                     :difficulty, :cost, :servings, :status, :description)
+      params.require(:recipe).permit(:title, :recipe_category_id, :cooking_time, :preparation_time, :total_time, :difficulty, :cost, :servings, :status, :description, recipe_steps_attributes: [:id, :step_number, :instructions, :_destroy])
     end
 end

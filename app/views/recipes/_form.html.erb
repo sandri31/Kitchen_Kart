@@ -62,6 +62,22 @@
     <%= form.text_area :description %>
   </div>
 
+  <%= form.fields_for :recipe_steps do |recipe_step_form| %>
+    <div>
+      <%= form.label :instructions, style: "display: block" %>
+      <%= form.text_area :instructions %>
+    </div>
+
+    <div>
+      <%= recipe_step_form.check_box :_destroy %>
+      <%= recipe_step_form.label :_destroy, 'Remove step' %>
+    </div>
+
+    <div>
+      <%= form.submit %>
+    </div>
+  <% end %>
+
   <div>
     <%= form.submit 'Save as Private', name: 'commit' %>
     <%= form.submit 'Submit for Approval', name: 'commit' %>
