@@ -1,0 +1,13 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Recipe steps</h1>
+
+<div id="recipe_steps">
+  <% @recipe_steps.each do |recipe_step| %>
+    <%= render recipe_step %>
+  <% end %>
+</div>
+
+<div id="new_recipe_step">
+  <%= render partial: "recipe_steps/form", locals: { recipe_step: RecipeStep.new } %>
+</div>
