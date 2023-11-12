@@ -3,7 +3,7 @@ class RecipeStepsController < ApplicationController
 
   # GET /recipe_steps or /recipe_steps.json
   def index
-    @recipe_steps = RecipeStep.all
+    @recipe_steps = RecipeStep.order(:step_number)
   end
 
   # GET /recipe_steps/new

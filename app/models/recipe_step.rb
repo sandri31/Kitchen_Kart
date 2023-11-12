@@ -5,4 +5,11 @@
 # Example: step 1: cut the onions, step 2: fry the onions, etc.
 class RecipeStep < ApplicationRecord
   belongs_to :recipe
+  before_validation :set_step_number, on: :create
+
+  private
+
+    def set_step_number
+      self.step_number = recipe.recipe_steps.count + 1
+    end
 end

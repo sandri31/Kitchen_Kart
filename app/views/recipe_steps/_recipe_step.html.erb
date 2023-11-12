@@ -1,10 +1,11 @@
 <div id="<%= dom_id recipe_step %>">
   <p>
-    <strong>Etape:</strong><br />
+    <strong>Étape <%= recipe_step.step_number %> :</strong><br />
     <%= recipe_step.instructions %>
   </p>
 
   <p>
     <%= button_to 'Edit', edit_recipe_step_path(recipe_step), method: :post %>
     <%= button_to 'Delete', recipe_step, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </p>
 </div>
