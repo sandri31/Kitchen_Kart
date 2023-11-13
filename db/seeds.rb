@@ -1,10 +1,5 @@
 # frozen_string_literal: true
 
-categories = ['Apéritifs', 'Entrées', 'Plats', 'Desserts', 'Boissons', 'Petit-déj/brunch']
-categories.each do |category_name|
-  RecipeCategory.find_or_create_by(name: category_name)
-end
-
 # 1. Use the find_or_create_by method to create a User with the email
 user = User.find_or_create_by(email: 'user@example.com') do |u|
   u.password = 'password'

@@ -13,6 +13,7 @@ class RecipeStepsController < ApplicationController
 
   # GET /recipe_steps/1/edit
   def edit
+    RecipeStep.find(params[:id])
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: turbo_stream.update(@recipe_step,

@@ -49,7 +49,7 @@
     <%= recipe.description %>
   </p>
 
-  <% @recipe.recipe_steps.each do |recipe_step| %>
+  <% recipe.recipe_steps.each do |recipe_step| %>
     <div id="<%= dom_id(recipe_step) %>">
       <p>
         <strong>Étape <%= recipe_step.step_number %> :</strong><br />

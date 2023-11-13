@@ -1,22 +1,24 @@
-<%= form_with(model: recipe_step) do |form| %>
-  <% if recipe_step.errors.any? %>
+<%= form_with(model: f.object) do |form| %>
+  <% if f.object.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(recipe_step.errors.count, "error") %> prohibited this recipe_step from being saved:</h2>
+      <h2><%= pluralize(f.object.errors.count, "error") %> prohibited this recipe_step from being saved:</h2>
 
       <ul>
-        <% recipe_step.errors.each do |error| %>
+        <% f.object.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :instructions, style: "display: block" %>
-    <%= form.text_area :instructions %>
-  </div>
+  <div id="<%= dom_id(f.object) %>">
+    <div>
+      <%= form.label :instructions, style: "display: block" %>
+      <%= form.text_area :instructions %>
+    </div>
 
-  <div>
-    <%= form.submit %>
+    <div>
+      <%= form.submit %>
+    </div>
   </div>
 <% end %>

@@ -38,12 +38,12 @@
 
   <div>
     <%= form.label :difficulté, style: "display: block" %>
-    <%= form.select :difficulty, options_for_select(['Facile', 'Moyen', 'Difficile'], @recipe.difficulty), include_blank: 'Select Difficulty' %>
+    <%= form.select :difficulty, options_for_select(['Facile', 'Moyen', 'Difficile'], @recipe.difficulty) %>
   </div>
 
   <div>
     <%= form.label :coût, style: "display: block" %>
-    <%= form.select :cost, options_for_select(['Très bon marché', 'Bon marché', 'Modéré', 'Assez cher', 'Cher', 'Très cher'], @recipe.cost), include_blank: 'Select Cost' %>
+    <%= form.select :cost, options_for_select(['Très bon marché', 'Bon marché', 'Modéré', 'Assez cher', 'Cher', 'Très cher'], @recipe.cost) %>
   </div>
 
   <div>
@@ -63,19 +63,7 @@
   </div>
 
   <%= form.fields_for :recipe_steps do |recipe_step_form| %>
-    <div>
-      <%= recipe_step_form.label :instructions, style: "display: block" %>
-      <%= recipe_step_form.text_area :instructions %>
-    </div>
-
-    <div>
-      <%= recipe_step_form.check_box :_destroy %>
-      <%= recipe_step_form.label :_destroy, 'Remove step' %>
-    </div>
-
-    <div>
-      <%= form.submit %>
-    </div>
+    <%= render 'recipe_steps/form', f: recipe_step_form %>
   <% end %>
 
   <div>
