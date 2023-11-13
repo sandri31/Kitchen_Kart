@@ -17,7 +17,7 @@
   </div>
 
   <div>
-    <%= form.label :Catégorie_de_recette, style: "display: block" %>
+    <%= form.label :Catégorie, style: "display: block" %>
     <%= form.collection_select :recipe_category_id, RecipeCategory.all, :id, :name, include_blank: 'Please select' %>
   </div>
 
@@ -42,12 +42,12 @@
   </div>
 
   <div>
-    <%= form.label :Coût, style: "display: block" %>
+    <%= form.label :coût, style: "display: block" %>
     <%= form.select :cost, options_for_select(['Très bon marché', 'Bon marché', 'Modéré', 'Assez cher', 'Cher', 'Très cher'], @recipe.cost), include_blank: 'Select Cost' %>
   </div>
 
   <div>
-    <%= form.label :servings, style: "display: block" %>
+    <%= form.label :nombre_de_personne, style: "display: block" %>
     <%= form.number_field :servings %>
   </div>
 
@@ -64,8 +64,8 @@
 
   <%= form.fields_for :recipe_steps do |recipe_step_form| %>
     <div>
-      <%= form.label :instructions, style: "display: block" %>
-      <%= form.text_area :instructions %>
+      <%= recipe_step_form.label :instructions, style: "display: block" %>
+      <%= recipe_step_form.text_area :instructions %>
     </div>
 
     <div>

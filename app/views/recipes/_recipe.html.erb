@@ -1,16 +1,11 @@
 <div id="<%= dom_id recipe %>">
   <p>
-    <strong>Title:</strong>
+    <strong>Titre:</strong>
     <%= recipe.title %>
   </p>
 
   <p>
-    <strong>User:</strong>
-    <%= recipe.user_id %>
-  </p>
-
-  <p>
-    <strong>Category:</strong>
+    <strong>Categorie:</strong>
     <%= recipe.recipe_category.name %>
   </p>
 
@@ -30,17 +25,17 @@
   </p>
 
   <p>
-    <strong>Difficulty:</strong>
+    <strong>Difficulté:</strong>
     <%= recipe.difficulty %>
   </p>
 
   <p>
-    <strong>Cost:</strong>
+    <strong>Coût:</strong>
     <%= recipe.cost %>
   </p>
 
   <p>
-    <strong>Servings:</strong>
+    <strong>Nombre de personne:</strong>
     <%= recipe.servings %>
   </p>
 
@@ -54,4 +49,19 @@
     <%= recipe.description %>
   </p>
 
+  <% @recipe.recipe_steps.each do |recipe_step| %>
+    <div id="<%= dom_id(recipe_step) %>">
+      <p>
+        <strong>Étape <%= recipe_step.step_number %> :</strong><br />
+        <%= recipe_step.instructions %>
+      </p>
+
+      <% if current_user == recipe.user %>
+        <p>
+          <%= button_to 'Edit', edit_recipe_step_path(recipe_step), method: :post %>
+          <%= button_to 'Delete', recipe_step, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </p>
+      <% end %>
+    </div>
+  <% end %>
 </div>
