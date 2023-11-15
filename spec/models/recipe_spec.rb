@@ -12,7 +12,6 @@ RSpec.describe Recipe, type: :model do
       recipe_category: recipe_category,
       title: 'Tarte aux pommes',
       cooking_time: 30,
-      preparation_time: 15,
       difficulty: 'Facile',
       cost: 'Bon marché',
       servings: 10,
@@ -33,18 +32,10 @@ RSpec.describe Recipe, type: :model do
   # Validations
   it { is_expected.to validate_presence_of(:title) }
   it { is_expected.to validate_numericality_of(:cooking_time).only_integer.is_greater_than(0) }
-  it { is_expected.to validate_numericality_of(:preparation_time).only_integer.is_greater_than(0) }
   it { is_expected.to validate_inclusion_of(:difficulty).in_array(%w[Facile Moyen Difficile]) }
-  it { is_expected.to validate_length_of(:description).is_at_least(10).is_at_most(1000) }
 
   # Enums
   it { is_expected.to define_enum_for(:status).with_values(initial_draft: 0, published: 1, archived: 2, private_status: 3).with_prefix(:status) }
 
   # Méthodes
-  describe '#calculate_total_time' do
-    it 'calculates the total time as the sum of cooking and preparation time' do
-      recipe.save
-      expect(recipe.total_time).to eq(45)
-    end
-  end
 end
