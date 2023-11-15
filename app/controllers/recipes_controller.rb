@@ -11,8 +11,8 @@ class RecipesController < ApplicationController
   def show
     @recipe = Recipe.find(params[:id])
     @recipe_steps = @recipe.recipe_steps
-    @recipe_ingredients = @recipe.recipe_ingredients
     @servings = @recipe.servings
+    @cooking_time = @recipe.cooking_time
   end
 
   # GET /recipes/new

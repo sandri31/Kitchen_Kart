@@ -1,12 +1,25 @@
 <p style="color: green"><%= notice %></p>
 
+<p>
+  <%= "Catégorie : #{@recipe.recipe_category.name}" %> |
+  <%= "Difficulté : #{@recipe.difficulty}" %>
+</p>
+
 <%= render @recipe %>
+
+<p>
+  <%= "Pour #{pluralize(@servings, 'personne')}" %> |
+  <%= "Préparation : #{pluralize(@cooking_time, 'minute')}" %>
+</p>
 
 <h4>Ingrédients</h4>
 <p>
-  <%= "Pour #{pluralize(@servings, 'personne')}" %>
+  <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
+    <%= recipe_ingredient.quantity %>
+    <%= recipe_ingredient.unit %>
+    <%= recipe_ingredient.name %><br />
+  <% end %>
 </p>
-<!-- TODO Ingredients list -->
 
 <% @recipe.recipe_steps.each_with_index do |step, index| %>
   <p>
