@@ -3,7 +3,7 @@
 
   <div>
     <%#= form.label :etape, style: "display: block" %>
-    <%= form.text_area:description %>
+    <%= form.text_area:instructions %>
   </div>
 
   <%= form.submit "Supprimer l'étape", formaction: recipe_step_path(form.index, form.object.id),

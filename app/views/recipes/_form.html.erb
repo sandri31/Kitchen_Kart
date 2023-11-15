@@ -12,13 +12,18 @@
   <% end %>
 
   <div>
-    <%= form.label :nom, style: "display: block" %>
-    <%= form.text_field :name %>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
   </div>
 
   <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
+    <%= form.label :servings, style: "display: block" %>
+    <%= form.number_field :servings %>
+  </div>
+
+  <div>
+    <%= form.label :cooking_time, "Temps de préparation (minutes)" , style: "display: block" %>
+    <%= form.number_field :cooking_time %>
   </div>
 
   <h4>Création d'étapes</h4>
