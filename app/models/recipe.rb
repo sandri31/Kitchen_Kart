@@ -14,19 +14,13 @@ class Recipe < ApplicationRecord
   has_many :recipe_steps, dependent: :destroy
 
   validates :title, presence: true
-  validates :cooking_time, :preparation_time, presence: true, numericality: { only_integer: true, greater_than: 0 }
+  validates :cooking_time, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :difficulty, inclusion: { in: %w[Facile Moyen Difficile] }
   validates :description, presence: true, length: { minimum: 10, maximum: 1000 }
 
-  before_save :calculate_total_time
+  # before_save :calculate_total_time
 
   enum status: { initial_draft: 0, published: 1, archived: 2, private_status: 3 }, _prefix: :status
 
   accepts_nested_attributes_for :recipe_steps, reject_if: :all_blank, allow_destroy: true
-
-  private
-
-    def calculate_total_time
-      self.total_time = cooking_time + preparation_time if cooking_time.present? && preparation_time.present?
-    end
 end

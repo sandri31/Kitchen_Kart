@@ -5,7 +5,7 @@
 <% @recipe.recipe_steps.each_with_index do |step, index| %>
   <p>
     <strong>Étape <%= index + 1 %> :</strong><br />
-    <%= step.description %>
+    <%= step.instructions %>
   </p>
 <% end %>
 

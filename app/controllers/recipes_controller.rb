@@ -1,4 +1,5 @@
 class RecipesController < ApplicationController
+  before_action :authenticate_user!, except: %i[index show]
   before_action :set_recipe, only: %i[show edit update destroy]
 
   # GET /recipes
@@ -22,7 +23,7 @@ class RecipesController < ApplicationController
 
   # POST /recipes
   def create
-    @recipe = Recipe.new(recipe_params)
+    @recipe = current_user.recipes.build(recipe_params)
 
     if @recipe.save
       redirect_to recipe_url(@recipe), notice: 'Recipe was successfully created.'
@@ -56,6 +57,6 @@ class RecipesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def recipe_params
-      params.require(:recipe).permit(:description, :name, recipe_steps_attributes: %i[id description _destroy])
+      params.require(:recipe).permit(:title, :servings, :cooking_time, :recipe_category_id, :difficulty, :description, recipe_steps_attributes: %i[id instructions _destroy])
     end
 end
