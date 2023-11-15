@@ -2,6 +2,12 @@
 
 <%= render @recipe %>
 
+<h4>Ingrédients</h4>
+<p>
+  <%= "Pour #{pluralize(@servings, 'personne')}" %>
+</p>
+<!-- TODO Ingredients list -->
+
 <% @recipe.recipe_steps.each_with_index do |step, index| %>
   <p>
     <strong>Étape <%= index + 1 %> :</strong><br />

@@ -4,8 +4,10 @@
     <%= recipe.title %>
   </p>
 
-  <p>
-    <strong>Description:</strong><br />
-    <%= recipe.description %>
-  </p>
+  <% if recipe.description.present? %>
+    <p>
+      <strong>Description:</strong><br />
+      <%= recipe.description %>
+    </p>
+  <% end %>
 </div>

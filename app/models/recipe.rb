@@ -15,8 +15,8 @@ class Recipe < ApplicationRecord
 
   validates :title, presence: true
   validates :cooking_time, presence: true, numericality: { only_integer: true, greater_than: 0 }
+  validates :servings, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :difficulty, inclusion: { in: %w[Facile Moyen Difficile] }
-  validates :description, presence: true, length: { minimum: 10, maximum: 1000 }
 
   # before_save :calculate_total_time
 
