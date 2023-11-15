@@ -1,0 +1,13 @@
+<%= turbo_frame_tag "recipe_step_#{form.index}" do %>
+  <%= form.hidden_field :id %>
+
+  <div>
+    <%#= form.label :etape, style: "display: block" %>
+    <%= form.text_area:description %>
+  </div>
+
+  <%= form.submit "Supprimer l'étape", formaction: recipe_step_path(form.index, form.object.id),
+                                  formmethod: :delete,
+                                  formnovalidate: true,
+                                  data: { turbo_frame: "recipe_step_#{form.index}" } %>
+<% end %>
