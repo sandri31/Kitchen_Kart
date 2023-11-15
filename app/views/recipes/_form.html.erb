@@ -12,6 +12,28 @@
   <% end %>
 
   <div>
-    <%= form.submit %>
+    <%= form.label :nom, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_area :description %>
+  </div>
+
+  <h4>Création d'étapes</h4>
+  <div id="recipe_steps">
+    <%= form.fields_for :recipe_steps do |recipe_step_form| %>
+      <%= render "recipe_steps/form", form: recipe_step_form %>
+    <% end %>
+  </div>
+
+  <%= form.submit "Ajoute une étape", formaction: recipe_step_path(@recipe.recipe_steps.size),
+                                      formmethod: :post,
+                                      formnovalidate: true,
+                                      id: "add-recipe_step" %>
+
+  <div>
+    <%= form.submit "Enregistrer" %>
   </div>
 <% end %>

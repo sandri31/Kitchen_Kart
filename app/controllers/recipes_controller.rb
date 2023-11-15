@@ -7,11 +7,14 @@ class RecipesController < ApplicationController
   end
 
   # GET /recipes/1
-  def show; end
+  def show
+    @recipe = Recipe.find(params[:id])
+    @recipe_steps = @recipe.recipe_steps
+  end
 
   # GET /recipes/new
   def new
-    @recipe = Recipe.new
+    @recipe = Recipe.new(recipe_steps: [RecipeStep.new])
   end
 
   # GET /recipes/1/edit
@@ -20,6 +23,7 @@ class RecipesController < ApplicationController
   # POST /recipes
   def create
     @recipe = Recipe.new(recipe_params)
+
     if @recipe.save
       redirect_to recipe_url(@recipe), notice: 'Recipe was successfully created.'
     else
@@ -39,6 +43,7 @@ class RecipesController < ApplicationController
   # DELETE /recipes/1
   def destroy
     @recipe.destroy!
+
     redirect_to recipes_url, notice: 'Recipe was successfully destroyed.'
   end
 
@@ -51,6 +56,6 @@ class RecipesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def recipe_params
-      params.fetch(:recipe, {})
+      params.require(:recipe).permit(:description, :name, recipe_steps_attributes: %i[id description _destroy])
     end
 end
