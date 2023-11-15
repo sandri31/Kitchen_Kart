@@ -18,7 +18,7 @@
 
   <div>
     <%= form.label :recipe_category, style: "display: block" %>
-    <%= form.select :recipe_category_id, RecipeCategory.all.map { |c| [c.name, c.id] }, prompt: 'Choisissez une catégorie' %>
+    <%= form.select :recipe_category_id, RecipeCategory.all.map { |c| [c.name, c.id] } %>
   </div>
 
   <div>
