@@ -9,6 +9,12 @@ Rails.application.routes.draw do
       post '/' => 'recipe_steps#create'
     end
   end
+  resources :recipe_ingredients, only: [], param: :index do
+    member do
+      delete '(:id)' => 'recipe_ingredients#destroy', as: ''
+      post '/' => 'recipe_ingredients#create'
+    end
+  end
 
   get 'up' => 'rails/health#show', as: :rails_health_check
 end

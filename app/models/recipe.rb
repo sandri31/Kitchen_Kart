@@ -23,4 +23,5 @@ class Recipe < ApplicationRecord
   enum status: { initial_draft: 0, published: 1, archived: 2, private_status: 3 }, _prefix: :status
 
   accepts_nested_attributes_for :recipe_steps, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :recipe_ingredients, reject_if: :all_blank, allow_destroy: true
 end

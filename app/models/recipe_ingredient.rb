@@ -5,8 +5,8 @@
 # enabling detailed recipe construction.
 # Example: "2 carottes", "1 cuillère à soupe de sel", etc.
 class RecipeIngredient < ApplicationRecord
-  belongs_to :recipe
-  belongs_to :ingredient
+  belongs_to :recipe, optional: true
 
+  validates :name, presence: true
   validates :quantity, numericality: { only_integer: true, greater_than: 0 }
 end
