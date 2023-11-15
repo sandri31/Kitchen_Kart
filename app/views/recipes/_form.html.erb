@@ -12,22 +12,24 @@
   <% end %>
 
   <div>
-    <%= form.label :title, style: "display: block" %>
+    <%= form.label :titre, style: "display: block" %>
     <%= form.text_field :title %>
   </div>
 
   <div>
-    <%= form.label :recipe_category, style: "display: block" %>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_area :description,
+                        placeholder: "Racontez nous l'histoire de cette recette. Qu'est-ce ou qui vous a inspiré pour la cuisiner ? Qu'est-ce qui la rend spécial pour vous ?", rows: 4 %>
+  </div>
+
+  <div>
+    <%= form.label :catégorie_de_recette, style: "display: block" %>
     <%= form.select :recipe_category_id, RecipeCategory.all.map { |c| [c.name, c.id] } %>
   </div>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
-  </div>
 
   <div>
-    <%= form.label :servings, style: "display: block" %>
+    <%= form.label :portions, style: "display: block" %>
     <%= form.number_field :servings %>
   </div>
 
@@ -37,8 +39,8 @@
   </div>
 
   <div>
-    <%= form.label :difficulty, style: "display: block" %>
-    <%= form.select :difficulty, ["Facile", "Moyen", "Difficile"] %>
+    <%= form.label :difficulté, style: "display: block" %>
+    <%= form.select :difficulty, ["Très Facile", "Facile", "Moyen", "Difficile"] %>
   </div>
 
   <h4>Création d'étapes</h4>
