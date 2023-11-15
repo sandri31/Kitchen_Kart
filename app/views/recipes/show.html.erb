@@ -2,14 +2,14 @@
 
 <p>
   <%= "Catégorie : #{@recipe.recipe_category.name}" %> |
-  <%= "Difficulté : #{@recipe.difficulty}" %>
+  <%= "Difficulté : #{@recipe.difficulty}" %> |
+  <%= "Préparation : #{pluralize(@cooking_time, 'minute')}" %>
 </p>
 
 <%= render @recipe %>
 
 <p>
-  <%= "Pour #{pluralize(@servings, 'personne')}" %> |
-  <%= "Préparation : #{pluralize(@cooking_time, 'minute')}" %>
+  <%= "Pour #{pluralize(@servings, 'personne')}" %>
 </p>
 
 <h4>Ingrédients</h4>
@@ -20,6 +20,8 @@
     <%= recipe_ingredient.name %><br />
   <% end %>
 </p>
+
+<!-- TODO:  Render the ustensils -->
 
 <% @recipe.recipe_steps.each_with_index do |step, index| %>
   <p>
