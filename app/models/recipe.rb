@@ -11,20 +11,17 @@ class Recipe < ApplicationRecord
   has_many :ratings, dependent: :destroy
   has_many :recipe_utensils
   has_many :utensils, through: :recipe_utensils
-  has_many :recipe_steps, -> { order(step_number: :asc) }, dependent: :destroy
+  has_many :recipe_steps, dependent: :destroy
 
   validates :title, presence: true
-  validates :cooking_time, :preparation_time, presence: true, numericality: { only_integer: true, greater_than: 0 }
-  validates :difficulty, inclusion: { in: %w[Facile Moyen Difficile] }
-  validates :description, presence: true, length: { minimum: 10, maximum: 1000 }
+  validates :cooking_time, presence: true, numericality: { only_integer: true, greater_than: 0 }
+  validates :servings, presence: true, numericality: { only_integer: true, greater_than: 0 }
+  validates :difficulty, inclusion: { in: ['Très Facile', 'Facile', 'Moyen', 'Difficile'] }
 
-  before_save :calculate_total_time
+  # before_save :calculate_total_time
 
   enum status: { initial_draft: 0, published: 1, archived: 2, private_status: 3 }, _prefix: :status
 
-  private
-
-    def calculate_total_time
-      self.total_time = cooking_time + preparation_time if cooking_time.present? && preparation_time.present?
-    end
+  accepts_nested_attributes_for :recipe_steps, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :recipe_ingredients, reject_if: :all_blank, allow_destroy: true
 end

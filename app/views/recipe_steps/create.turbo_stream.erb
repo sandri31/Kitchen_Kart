@@ -1,0 +1,15 @@
+<%= fields model: @recipe do |form| %>
+  <%= form.fields_for :recipe_steps, child_index: params[:index] do |recipe_step_form| %>
+    <%= turbo_stream.replace "add-recipe_step" do %>
+      <%= form.submit "Ajouter une étape",
+            formaction: recipe_step_path(recipe_step_form.index.to_i + 1),
+            formmethod: :post,
+            formnovalidate: true,
+            id: "add-recipe_step" %>
+    <% end %>
+
+    <%= turbo_stream.append "recipe_steps" do %>
+      <%= render "form", form: recipe_step_form %>
+    <% end %>
+  <% end %>
+<% end %>

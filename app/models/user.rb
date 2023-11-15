@@ -15,7 +15,7 @@ class User < ApplicationRecord
 
   enum role: { user: 0, moderator: 1, admin: 2 }
 
-  validates :username, presence: true, uniqueness: true
+  # validates :username, presence: true, uniqueness: true
 
   after_initialize :set_default_role, if: :new_record?
 

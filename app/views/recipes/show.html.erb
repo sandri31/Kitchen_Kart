@@ -1,0 +1,23 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @recipe %>
+
+<h4>Ingrédients</h4>
+<p>
+  <%= "Pour #{pluralize(@servings, 'personne')}" %>
+</p>
+<!-- TODO Ingredients list -->
+
+<% @recipe.recipe_steps.each_with_index do |step, index| %>
+  <p>
+    <strong>Étape <%= index + 1 %> :</strong><br />
+    <%= step.instructions %>
+  </p>
+<% end %>
+
+<div>
+  <%= link_to "Modifier la recette", edit_recipe_path(@recipe) %> |
+  <%= link_to "Retour à l'accueil", recipes_path %>
+
+  <%= button_to "Supprimer la recette", @recipe, method: :delete %>
+</div>

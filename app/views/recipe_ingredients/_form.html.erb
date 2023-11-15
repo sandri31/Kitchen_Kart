@@ -1,0 +1,14 @@
+<%= turbo_frame_tag "recipe_ingredient_#{form.index}" do %>
+  <%= form.hidden_field :id %>
+
+  <div class="form-group">
+    <%= form.number_field :quantity, placeholder: '20' %>
+    <%= form.text_field :unit, placeholder: 'g' %>
+    <%= form.text_field :name, placeholder: 'Sucre' %>
+  </div>
+
+  <%= form.submit "Supprimer un ingrédient", formaction: recipe_ingredient_path(form.index, form.object.id),
+                  formmethod: :delete,
+                  formnovalidate: true,
+                  data: { turbo_frame: "recipe_ingredient_#{form.index}" } %>
+<% end %>

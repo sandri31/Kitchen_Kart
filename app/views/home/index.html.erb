@@ -1,7 +1,6 @@
-Hello world!
-
 <% if current_user %>
   <p>Bonjour <%= current_user.email %></p>
+  <%= link_to "Mes recettes", recipes_path %>
 <% else %>
   <p>Vous n'êtes pas connecté.</p>
   <%= link_to "S'inscrire", new_user_registration_path %>

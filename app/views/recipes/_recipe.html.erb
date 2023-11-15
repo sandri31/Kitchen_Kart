@@ -1,0 +1,13 @@
+<div id="<%= dom_id recipe %>">
+  <p>
+    <strong>Nom:</strong><br />
+    <%= recipe.title %>
+  </p>
+
+  <% if recipe.description.present? %>
+    <p>
+      <strong>Description:</strong><br />
+      <%= recipe.description %>
+    </p>
+  <% end %>
+</div>

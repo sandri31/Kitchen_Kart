@@ -1,0 +1,73 @@
+<%= form_with(model: recipe) do |form| %>
+  <% if recipe.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+
+      <ul>
+        <% recipe.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :titre, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_area :description,
+                        placeholder: "Racontez nous l'histoire de cette recette. Qu'est-ce ou qui vous a inspiré pour la cuisiner ? Qu'est-ce qui la rend spécial pour vous ?", rows: 4 %>
+  </div>
+
+  <div>
+    <%= form.label :catégorie_de_recette, style: "display: block" %>
+    <%= form.select :recipe_category_id, RecipeCategory.all.map { |c| [c.name, c.id] } %>
+  </div>
+
+
+  <div>
+    <%= form.label :portions, style: "display: block" %>
+    <%= form.number_field :servings %>
+  </div>
+
+  <div>
+    <%= form.label :cooking_time, "Temps de préparation (minutes)" , style: "display: block" %>
+    <%= form.number_field :cooking_time %>
+  </div>
+
+  <div>
+    <%= form.label :difficulté, style: "display: block" %>
+    <%= form.select :difficulty, ["Très Facile", "Facile", "Moyen", "Difficile"] %>
+  </div>
+
+  <h4>Ingrédients</h4>
+  <div id="recipe_ingredients">
+    <%= form.fields_for :recipe_ingredients do |recipe_ingredient_form| %>
+      <%= render "recipe_ingredients/form", form: recipe_ingredient_form %>
+    <% end %>
+  </div>
+
+  <%= form.submit "Ajoute un ingrédient", formaction: recipe_ingredient_path(@recipe.recipe_ingredients.size),
+                                      formmethod: :post,
+                                      formnovalidate: true,
+                                      id: "add-recipe_ingredient" %>
+
+  <h4>Création d'étapes</h4>
+  <div id="recipe_steps">
+    <%= form.fields_for :recipe_steps do |recipe_step_form| %>
+      <%= render "recipe_steps/form", form: recipe_step_form %>
+    <% end %>
+  </div>
+
+  <%= form.submit "Ajoute une étape", formaction: recipe_step_path(@recipe.recipe_steps.size),
+                                      formmethod: :post,
+                                      formnovalidate: true,
+                                      id: "add-recipe_step" %>
+
+  <div>
+    <%= form.submit "Enregistrer" %>
+  </div>
+<% end %>
