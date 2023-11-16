@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RecipesController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
   before_action :set_recipe, only: %i[show edit update destroy]
