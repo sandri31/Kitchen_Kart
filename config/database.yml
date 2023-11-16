@@ -79,6 +79,7 @@ test:
 #
 production:
   <<: *default
+  url: <%= ENV["DATABASE_URL"] %>
   database: kitchen_kart_production
   username: kitchen_kart
   password: <%= ENV["KITCHEN_KART_DATABASE_PASSWORD"] %>
