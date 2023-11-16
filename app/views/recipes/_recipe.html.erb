@@ -10,4 +10,6 @@
       <%= recipe.description %>
     </p>
   <% end %>
+
+  <%= image_tag(recipe.image, class: "img-responsive") if recipe.image.present? %>
 </div>
