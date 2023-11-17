@@ -28,12 +28,10 @@ class RecipesController < ApplicationController
   # POST /recipes
   def create
     @recipe = current_user.recipes.build(recipe_params)
-    Rails.logger.debug @recipe.errors.inspect unless @recipe.save
 
     if @recipe.save
       redirect_to recipe_url(@recipe), notice: 'Recipe was successfully created.'
     else
-      Rails.logger.debug @recipe.errors.full_messages.to_sentence
       render :new, status: :unprocessable_entity
     end
   end

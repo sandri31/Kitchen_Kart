@@ -44,7 +44,8 @@
     <%= form.select :difficulty, ["Très Facile", "Facile", "Moyen", "Difficile"] %>
   </div>
 
-  <h4>Ingrédients</h4>
+  
+  <h4>Ingrédients <%= Time.now.in_time_zone("Paris") %></h4>
   <div id="recipe_ingredients">
     <%= form.fields_for :recipe_ingredients do |recipe_ingredient_form| %>
       <%= render "recipe_ingredients/form", form: recipe_ingredient_form %>
