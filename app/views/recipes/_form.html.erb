@@ -22,6 +22,8 @@
                         placeholder: "Racontez nous l'histoire de cette recette. Qu'est-ce ou qui vous a inspiré pour la cuisiner ? Qu'est-ce qui la rend spécial pour vous ?", rows: 4 %>
   </div>
 
+  <%= render "image_preview", form: form, recipe: recipe %>
+
   <div>
     <%= form.label :catégorie_de_recette, style: "display: block" %>
     <%= form.select :recipe_category_id, RecipeCategory.all.map { |c| [c.name, c.id] } %>

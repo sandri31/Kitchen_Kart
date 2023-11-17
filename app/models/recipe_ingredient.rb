@@ -8,5 +8,5 @@ class RecipeIngredient < ApplicationRecord
   belongs_to :recipe, optional: true
 
   validates :name, presence: true
-  validates :quantity, numericality: { only_integer: true, greater_than: 0 }
+  validates :quantity, numericality: { only_integer: true, allow_nil: true }
 end

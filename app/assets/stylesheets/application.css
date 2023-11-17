@@ -17,3 +17,21 @@
  .form-group {
   display: flex;
 }
+
+.img-responsive {
+  width: 300px;
+  height: auto;
+}
+
+.img-container {
+  width: 300px;
+  height: 300px;
+}
+
+.notice {
+  color: green;
+}
+
+.alert {
+  color: red;
+}

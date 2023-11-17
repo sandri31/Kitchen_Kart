@@ -12,6 +12,7 @@ class Recipe < ApplicationRecord
   has_many :recipe_utensils
   has_many :utensils, through: :recipe_utensils
   has_many :recipe_steps, dependent: :destroy
+  has_one_attached :image
 
   validates :title, presence: true
   validates :cooking_time, presence: true, numericality: { only_integer: true, greater_than: 0 }
