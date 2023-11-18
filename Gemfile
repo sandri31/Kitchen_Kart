@@ -4,22 +4,36 @@ source 'https://rubygems.org'
 
 ruby '3.2.1'
 
-gem 'bootsnap', require: false
-gem 'importmap-rails'
-gem 'jbuilder'
-gem 'pg', '~> 1.1'
-gem 'puma', '>= 5.0'
+##-- Base Gems for Rails --##
 gem 'rails', '~> 7.1.1'
-gem 'redis', '>= 4.0.1'
-gem 'sprockets-rails'
+gem 'bootsnap', require: false # Reduces boot times through caching; required in config/boot.rb
+
+##-- Hotwire & Frontend --##
+gem 'importmap-rails'
 gem 'stimulus-rails'
 gem 'turbo-rails'
-gem 'tzinfo-data', platforms: %i[windows jruby]
 
+##-- Sprockets --##
+gem 'sprockets-rails'
+
+##-- Rails Application Helper Gems --##
+gem 'jbuilder'
+
+##-- Gems for Database --##
+gem 'pg', '~> 1.1'
+gem 'redis', '>= 4.0.1'
+
+##--- Server & Infrastructure Configuration ---##
+gem 'puma', '>= 5.0'
+
+##-- Authentication & Authorization --##
 gem 'devise', '~> 4.9', '>= 4.9.3'
 
-##-- for active storage --##
+##-- Active Storage --##
 gem 'aws-sdk-s3', require: false
+
+##-- Platform Specific Gems --##
+gem 'tzinfo-data', platforms: %i[windows jruby]
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
